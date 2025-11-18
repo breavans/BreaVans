@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>BreaVans Cantabria – Alquiler de autocaravanas y furgonetas camper</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="BreaVans Cantabria: alquiler de autocaravanas y furgonetas camper en Cantabria. Modelos modernos y totalmente equipados.">
+  <style>
+    :root {
+      --color-principal: #111;
+      --color-acento: #00897b;
+      --color-fondo: #f7f7f7;
+      --ancho-max: 1100px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #fff;
+      color: #222;
+      line-height: 1.5;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* CABECERA */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+    }
+    .nav {
+      max-width: var(--ancho-max);
+      margin: 0 auto;
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .logo-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .brand {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.9rem;
+      align-items: center;
+    }
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.1rem;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-acento);
+      transition: width .2s;
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    .btn-nav {
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: var(--color-acento);
+      color: #fff;
+      font-size: 0.85rem;
+    }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 56px;
+        background: #fff;
+        flex-direction: column;
+        padding: 0.8rem 1rem 1rem;
+        border-bottom: 1px solid #eee;
+        display: none;
+      }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: block; }
+    }
+
+    /* LAYOUT GENERAL */
+    main {
+      max-width: var(--ancho-max);
+      margin: 0 auto;
+      padding: 1.5rem 1rem 3rem;
+    }
+    section {
+      padding: 2.5rem 0;
+    }
+    section + section {
+      border-top: 1px solid #eee;
+    }
+    h1, h2, h3 {
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    h1 { font-size: clamp(2rem, 4vw, 2.4rem); margin-bottom: 0.7rem; }
+    h2 { font-size: 1.6rem; margin-bottom: 1rem; }
+    h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
+    p { margin-bottom: 0.6rem; }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: center;
+      padding-top: 1rem;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      background: var(--color-fondo);
+      margin-bottom: 0.5rem;
+    }
+    .hero-text {
+      font-size: 0.98rem;
+      color: #555;
+      margin-bottom: 1.2rem;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .btn {
+      border-radius: 999px;
+      padding: 0.7rem 1.4rem;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .btn-primary {
+      background: var(--color-acento);
+      color: #fff;
+    }
+    .btn-secondary {
+      border: 1px solid #ccc;
+      background: #fff;
+    }
+    .hero-highlight {
+      font-size: 0.85rem;
+      color: #666;
+    }
+    .hero-image {
+      background: var(--color-fondo);
+      border-radius: 18px;
+      padding: 1.8rem 1.4rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .hero-image img { max-width: 260px; }
+    .hero-tag {
+      position: absolute;
+      bottom: 1rem;
+      right: 1.3rem;
+      background: #fff;
+      padding: 0.4rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; }
+    }
+
+    /* FURGONETAS */
+    .grid-furgos {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.3rem;
+      margin-top: 0.7rem;
+    }
+    @media (max-width: 650px) {
+      .grid-furgos { grid-template-columns: 1fr; }
+    }
+    .furgo-card {
+      border-radius: 12px;
+      border: 1px solid #eee;
+      background: #fff;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+    }
+    .furgo-card img {
+      height: 200px;
+      object-fit: cover;
+      background: #ddd;
+    }
+    .furgo-body {
+      padding: 1rem 1rem 0.8rem;
+      font-size: 0.9rem;
+      flex: 1;
+    }
+    .furgo-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.4rem 0;
+      font-size: 0.8rem;
+    }
+    .pill {
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      background: var(--color-fondo);
+    }
+    .furgo-precio {
+      font-weight: 600;
+      margin-top: 0.3rem;
+    }
+    .furgo-footer {
+      padding: 0.8rem 1rem 1rem;
+      border-top: 1px solid #f0f0f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.84rem;
+    }
+    .furgo-footer a { color: var(--color-acento); font-weight: 600; }
+
+    /* CONTACTO */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    form {
+      display: grid;
+      gap: 0.7rem;
+      font-size: 0.9rem;
+    }
+    label {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.5rem 0.6rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font: inherit;
+      resize: vertical;
+    }
+    textarea { min-height: 110px; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid #eee;
+      padding: 1rem 1rem 1.8rem;
+      font-size: 0.8rem;
+      color: #777;
+    }
+    .footer-inner {
+      max-width: var(--ancho-max);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <div class="nav-left">
+      <!-- Cambia el src por tu logo circular (por ejemplo, el icono redondo) -->
+      <div class="logo-circle">
+        <img src="logo-icono-breavans.png" alt="BreaVans Cantabria">
+      </div>
+      <span class="brand">BreaVans Cantabria</span>
+    </div>
+
+    <button class="nav-toggle" onclick="toggleMenu()">☰</button>
+
+    <div class="nav-links" id="navLinks">
+      <a href="#inicio">Inicio</a>
+      <a href="#furgonetas">Modelos</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#contacto"><button class="btn-nav">Reservar</button></a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- INICIO -->
+  <section id="inicio">
+    <div class="hero">
+      <div>
+        <div class="badge">🚐 Escápate por Cantabria a tu ritmo</div>
+        <h1>Alquiler de autocaravanas y furgonetas camper</h1>
+        <p class="hero-text">
+          En <strong>BreaVans Cantabria</strong> tienes vehículos modernos y totalmente equipados
+          para dormir, cocinar y disfrutar de la costa y la montaña sin prisas.
+        </p>
+        <div class="hero-actions">
+          <a href="#furgonetas"><button class="btn btn-primary">Ver modelos disponibles</button></a>
+          <a href="#contacto"><button class="btn btn-secondary">Pedir presupuesto</button></a>
+        </div>
+        <p class="hero-highlight">
+          Seguro y asistencia incluidos · Entrega en Cantabria · Descuentos por semanas completas.
+        </p>
+      </div>
+
+      <div class="hero-image">
+        <!-- Aquí puedes usar el logo redondo con el dibujo o una foto de una de tus furgos -->
+        <img src="logo-redondo-breavans.png" alt="BreaVans Cantabria logo">
+        <div class="hero-tag">Desde <strong>110 €/día</strong> según temporada</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FURGONETAS: TUS DOS MODELOS -->
+  <section id="furgonetas">
+    <h2>Nuestros modelos</h2>
+    <p>
+      Estas son las autocaravanas y furgonetas camper que puedes alquilar con BreaVans Cantabria.
+      Puedes ajustar precios, descripciones y fotos cuando quieras.
+    </p>
+
+    <div class="grid-furgos">
+
+      <!-- ADRIA TWIN 600 SPB FAMILY -->
+      <article class="furgo-card">
+        <img src="adria-twin-600-spb-family.jpg" alt="Adria Twin 600 SPB Family">
+        <div class="furgo-body">
+          <h3>Adria Twin 600 SPB Family</h3>
+          <p>
+            Camper gran volumen ideal para familias. Cama doble trasera + litera, salón confortable
+            y baño completo para viajar como en casa por Cantabria y alrededores.
+          </p>
+          <div class="furgo-meta">
+            <span class="pill">Hasta 4 plazas dormir</span>
+            <span class="pill">Baño con ducha</span>
+            <span class="pill">Cocina completa</span>
+            <span class="pill">Calefacción estacionaria</span>
+          </div>
+          <p class="furgo-precio">Desde 110–125 €/día (según temporada)</p>
+        </div>
+        <div class="furgo-footer">
+          <span>Consulta descuentos por semana completa</span>
+          <a href="#contacto">Reservar este modelo</a>
+        </div>
+      </article>
+
+      <!-- MACLOUIS MEMPHIS 3 MAXI -->
+      <article class="furgo-card">
+        <img src="maclouis-memphis-3-maxi.jpg" alt="MacLouis Memphis 3 Maxi">
+        <div class="furgo-body">
+          <h3>MacLouis Memphis 3 Maxi</h3>
+          <p>
+            Autocaravana muy espaciosa y luminosa, perfecta para familias o grupos de amigos.
+            Dispone de cama trasera, cama basculante, amplio salón y gran capacidad de almacenamiento.
+          </p>
+          <div class="furgo-meta">
+            <span class="pill">4–5 plazas dormir</span>
+            <span class="pill">Baño con ducha separada</span>
+            <span class="pill">Cocina totalmente equipada</span>
+            <span class="pill">Amplio salón</span>
+          </div>
+          <p class="furgo-precio">Desde 120–140 €/día (según temporada)</p>
+        </div>
+        <div class="furgo-footer">
+          <span>Descuentos por estancias largas</span>
+          <a href="#contacto">Reservar este modelo</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <h2>Contacto y reservas</h2>
+    <div class="contact-grid">
+      <div>
+        <p><strong>BreaVans Cantabria</strong></p>
+        <p>Alquiler de autocaravanas y furgonetas camper en Cantabria.</p>
+        <!-- CAMBIA ESTOS DATOS POR LOS TUYOS -->
+        <p><strong>Teléfono / WhatsApp:</strong> +34 600 000 000</p>
+        <p><strong>Email:</strong> info@breavanscantabria.com</p>
+        <p><strong>Instagram:</strong> @breavanscantabria</p>
+        <p><strong>Zona de recogida:</strong> (tu localidad en Cantabria)</p>
+        <p style="font-size:0.82rem;color:#666;margin-top:0.4rem;">
+          Escríbenos con las fechas, número de personas y el modelo que te interesa y te responderemos con un presupuesto personalizado.
+        </p>
+      </div>
+
+      <div>
+        <!-- Formulario sencillo que abre el gestor de correo del visitante -->
+        <form action="mailto:info@breavanscantabria.com" method="post" enctype="text/plain">
+          <div>
+            <label for="nombre">Nombre</label>
+            <input id="nombre" name="Nombre" required>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" type="email" name="Email" required>
+          </div>
+          <div>
+            <label for="telefono">Teléfono</label>
+            <input id="telefono" type="tel" name="Telefono">
+          </div>
+          <div>
+            <label for="fechas">Fechas aproximadas</label>
+            <input id="fechas" name="Fechas" placeholder="Ej: 10–15 agosto">
+          </div>
+          <div>
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="Mensaje" placeholder="Número de personas, modelo que te interesa, dudas…"></textarea>
+          </div>
+          <div>
+            <button type="submit" class="btn btn-primary">Enviar consulta</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <span>© <span id="year"></span> BreaVans Cantabria</span>
+    <span>Web básica editable en HTML/CSS</span>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
